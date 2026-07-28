@@ -17,33 +17,40 @@ function dvd(a, b) {
 function operate(a, op, b) {
     switch (op) {
         case "+":
-            display.textContent = add(a, b);
+            display.textContent = add(+a, +b);
             break;
         
         case "-":
-            display.textContent = sbt(a, b);
+            display.textContent = sbt(+a, +b);
             break;
         
         case "X":
-            display.textContent = mlt(a, b);
+            display.textContent = mlt(+a, +b);
             break;
 
         case "/":
-            display.textContent = dvd(a, b);
+            display.textContent = dvd(+a, +b);
             break;
     }
     current = "";
 }
 
 let display = document.querySelector("span");
+let current = "";
+let a = "";
+let op = "";
+let b = "";
+let justCalcd = true;
 
-document.querySelectorAll("button").forEach(btn => 
-    {btn.addEventListener('click', () => evaluate(button.textContent))});
+document.querySelectorAll("button").forEach(btn => {
+    btn.addEventListener('click', () => evaluate(btn.textContent))
+});
 
 function updateDisplay(num) {
-    if(display.textContent === "80085" || isNaN(num))
+    if(justCalcd) {
         display.textContent = "";
-
+        justCalcd = false;
+    }
     display.textContent += num;
 }
 
@@ -52,12 +59,12 @@ function updateVar(num) {
 }
 
 function evaluate(button) {
-    if(isNaN(button.textContent)) {
-        updateDisplay(button.textContent);
-        updateVar(button.textContent);
+    if(!isNaN(button)) {
+        updateDisplay(button);
+        updateVar(button);
         return
     }
-    if(button.textContent === "=") {
+    if(button === "=") {
         b = current;
         updateDisplay("");
         operate(a, op, b);
@@ -68,8 +75,3 @@ function evaluate(button) {
     a = current;
     current = "";
 }
-
-let current = "";
-let a = "";
-let op = "";
-let b = "";
