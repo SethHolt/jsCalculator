@@ -25,7 +25,7 @@ function operate(a, op, b) {
             ans = sbt(+a, +b);
             break;
         
-        case "X":
+        case "*":
             ans = mlt(+a, +b);
             break;
 
@@ -54,6 +54,10 @@ document.querySelectorAll("button").forEach(btn => {
     btn.addEventListener('click', () => evaluate(btn.textContent))
 });
 
+document.addEventListener('keydown', (e) => {
+    evaluate(e.key);
+});
+
 function updateDisplay(num) {
     if(justCalcd) {
         display.textContent = "";
@@ -72,7 +76,7 @@ function evaluate(button) {
         updateVar(button);
         return
     }
-    if(button === "=") {
+    if(button === "=" || button === "Enter") {
         b = current;
         operate(a, op, b);
         return;
