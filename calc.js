@@ -17,23 +17,28 @@ function dvd(a, b) {
 function operate(a, op, b) {
     switch (op) {
         case "+":
-            display.textContent = add(+a, +b);
+            ans = add(+a, +b);
             break;
         
         case "-":
-            display.textContent = sbt(+a, +b);
+            ans = sbt(+a, +b);
             break;
         
         case "X":
-            display.textContent = mlt(+a, +b);
+            ans = mlt(+a, +b);
             break;
 
         case "/":
-            display.textContent = dvd(+a, +b);
+            if(b === "0") {
+                display.textContent = "Nice try!";
+                return;
+            }
+            ans = dvd(+a, +b);
             break;
     }
-    a = b;
-    current = "";
+    ans = parseFloat(ans.toFixed(10));
+    display.textContent = ans;
+    current = ans; 
     justCalcd = true;
 }
 
