@@ -17,23 +17,59 @@ function dvd(a, b) {
 function operate(a, op, b) {
     switch (op) {
         case "+":
-            return add(a, b);
+            display.textContent = add(a, b);
             break;
         
         case "-":
-            return sbt(a, b);
+            display.textContent = sbt(a, b);
             break;
         
-        case "*":
-            return mlt(a, b);
+        case "X":
+            display.textContent = mlt(a, b);
             break;
 
         case "/":
-            return dvd(a, b);
+            display.textContent = dvd(a, b);
             break;
     }
+    current = "";
 }
 
-const a = spana;
-const op = btn;
-const b = spanb;
+let display = document.querySelector("span");
+
+document.querySelectorAll("button").forEach(btn => 
+    {btn.addEventListener('click', () => evaluate(button.textContent))});
+
+function updateDisplay(num) {
+    if(display.textContent === "80085" || isNaN(num))
+        display.textContent = "";
+
+    display.textContent += num;
+}
+
+function updateVar(num) {
+    current += num;
+}
+
+function evaluate(button) {
+    if(isNaN(button.textContent)) {
+        updateDisplay(button.textContent);
+        updateVar(button.textContent);
+        return
+    }
+    if(button.textContent === "=") {
+        b = current;
+        updateDisplay("");
+        operate(a, op, b);
+        return;
+    }
+
+    op = button.textContent; //catches +-*/ then updates variables
+    a = current;
+    current = "";
+}
+
+let current = "";
+let a = "";
+let op = "";
+let b = "";
