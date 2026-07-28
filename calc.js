@@ -32,7 +32,9 @@ function operate(a, op, b) {
             display.textContent = dvd(+a, +b);
             break;
     }
+    a = b;
     current = "";
+    justCalcd = true;
 }
 
 let display = document.querySelector("span");
@@ -66,12 +68,21 @@ function evaluate(button) {
     }
     if(button === "=") {
         b = current;
-        updateDisplay("");
         operate(a, op, b);
         return;
     }
 
-    op = button.textContent; //catches +-*/ then updates variables
+    if(button === "clear") {
+        justCalcd = true;
+        updateDisplay("");
+        a = "";
+        op = ""
+        b =""
+        current = "";
+    }
+
+    op = button; //catches +-*/ then updates variables
     a = current;
     current = "";
+    justCalcd = true;
 }
