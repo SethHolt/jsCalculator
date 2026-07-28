@@ -63,10 +63,12 @@ function updateDisplay(num) {
         display.textContent = "";
         justCalcd = false;
     }
+    if(display.textContent.length > 20) return;
     display.textContent += num;
 }
 
 function updateVar(num) {
+    if(current.length > 20) return;
     current += num;
 }
 
@@ -86,8 +88,8 @@ function evaluate(button) {
         justCalcd = true;
         updateDisplay("");
         a = "";
-        op = ""
-        b =""
+        op = "";
+        b = "";
         current = "";
         return;
     }
