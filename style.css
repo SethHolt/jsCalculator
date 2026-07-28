@@ -2,15 +2,15 @@ button {
     display: flex;
     flex-wrap: wrap;
     font-size: 20px;
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
 }
 
 container {
     display: flex;
     flex-wrap: wrap;
     height: auto;
-    width: 140px;
+    width: 220px;
 }
 
 span {
@@ -18,13 +18,9 @@ span {
     border-color: black;
     border-style: solid;
     box-sizing: border-box;
-    font-size: 35px;
+    font-size: 30px;
     font-style: bold;
-    height: 40px;
-    width: 120px;
+    height: 60px;
+    width: 180px;
 
-}
-
-#clear {
-    width: 80px;
 }

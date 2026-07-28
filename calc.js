@@ -15,6 +15,7 @@ function dvd(a, b) {
 }
 
 function operate(a, op, b) {
+    let ans = 0;
     switch (op) {
         case "+":
             ans = add(+a, +b);
@@ -84,6 +85,21 @@ function evaluate(button) {
         op = ""
         b =""
         current = "";
+        return;
+    }
+
+    if(button === ".") {
+        if (current.includes(".")) return;
+        updateDisplay(button);
+        updateVar(button);
+        return;
+    }
+
+    if(button === "back") {
+        if(!current) return;
+        current = current.slice(0, -1);
+        display.textContent = current;
+        return;
     }
 
     op = button; //catches +-*/ then updates variables
